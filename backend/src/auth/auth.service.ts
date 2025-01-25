@@ -29,6 +29,9 @@ export class AuthService{
             googleid: googleId,
             email,
             username: displayName,
+            createdAt: new Date(),
+            deletedAt: null,
+            updatedAt: new Date()
         });
 
         return await this.userRepository.save(newUser);

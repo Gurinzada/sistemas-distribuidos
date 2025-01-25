@@ -13,4 +13,5 @@ import { GoogleStategy } from "src/strategies/google.strategies";
     providers:[AuthService, UserService, GoogleStategy]
 })
 
-export class AuthModule{}
+export class AuthModule{
+}
