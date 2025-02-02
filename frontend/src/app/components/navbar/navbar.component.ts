@@ -6,6 +6,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterModule } from '@angular/router';
+import { SessionKeysEnum } from '../../../shared/session-keys.enum';
 
 @Component({
   selector: 'app-navbar',
@@ -34,6 +35,7 @@ export class NavbarComponent {
   }
 
   logout() {
+    sessionStorage.removeItem(SessionKeysEnum.AUTH);
     this.router.navigate(['']);
   }
 }

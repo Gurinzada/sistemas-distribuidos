@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-user-page',
@@ -70,6 +71,8 @@ export class ProductionAnalysisComponent implements OnInit {
         [Validators.required, Validators.min(0), Validators.max(100)],
       ],
     });
+
+    LoadingService.setLoading(false);
   }
 
   public submitForm() {

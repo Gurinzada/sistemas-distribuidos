@@ -1,5 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -13,5 +14,6 @@ export class LoginComponent {
 
   public googleLogin(): void {
     window.location.href = 'http://localhost:3000/auth/google';
+    LoadingService.setLoading(true);
   }
 }
