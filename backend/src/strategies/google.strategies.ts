@@ -17,6 +17,7 @@ export class GoogleStategy extends PassportStrategy(Strategy, 'google') {
 
     async validate(accessToken:string, refresehToken:string, profile:any, done: VerifyCallback): Promise<any> {
         const user = await this.authService.validateUser(profile);
+        console.log(user);
         return done(null, user)
     }
 }

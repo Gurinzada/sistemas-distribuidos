@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Res, UseGuards } from "@nestjs/common";
+import { Controller, Get, Post, Req, Res, UseGuards } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { Response } from "express";
 import * as jwt from "jsonwebtoken"
@@ -8,7 +8,7 @@ import * as jwt from "jsonwebtoken"
 export default class AuthController{
     constructor(){}
 
-    @Get("google")
+    @Post("google")
     @UseGuards(AuthGuard('google'))
     async googleLogin(){}
 
@@ -30,7 +30,7 @@ export default class AuthController{
         );
 
         return res.redirect(
-            `${process.env.FRONTEND_ADDRESS}/?userid=${token}`
+            `${process.env.FRONTEND_ADDRESS}?userid=${token}`
         )
     }
 }

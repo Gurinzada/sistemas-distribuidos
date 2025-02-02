@@ -1,11 +1,11 @@
-import { BadRequestException, Controller, Get, Req } from '@nestjs/common';
+import { BadRequestException, Controller, Get, Req, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('')
+  @Post('')
   async checkUserExistence(@Req() req: any) {
     const id = parseInt(req['keyToken'].userid);
     const googleid = req['keyToken'].googleid;
