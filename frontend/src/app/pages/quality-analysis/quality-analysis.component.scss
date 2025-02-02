@@ -1,0 +1,56 @@
+.coffee-production-analysis {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  align-items: center;
+}
+
+.title {
+  margin-top: 40px;
+}
+
+.form-modal {
+  z-index: 999;
+  position: absolute;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 8px;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  width: 500px;
+}
+
+mat-card {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+}
+
+mat-card-title {
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+button {
+  width: 100%;
+  margin-top: 16px;
+}

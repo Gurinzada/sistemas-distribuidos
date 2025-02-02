@@ -1,0 +1,131 @@
+<section>
+  <div class="coffee-production-analysis">
+    <h1 class="title">Análise sobre a produção do café</h1>
+
+    <button
+      class="request-button"
+      mat-flat-button
+      color="primary"
+      type="submit"
+      (click)="openModal()"
+    >
+      Requisitar nova analise
+    </button>
+  </div>
+
+  <div class="form-modal" *ngIf="modalOpenned">
+    <form [formGroup]="coffeeForm" (ngSubmit)="submitForm()">
+      <mat-card>
+        <mat-card-title>Informações do Lote de Café</mat-card-title>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Custo de produção</mat-label>
+          <input
+            mask="separator.2"
+            thousandSeparator="."
+            decimalMarker=","
+            matInput
+            type="number"
+            formControlName="umidade"
+          />
+          <mat-error *ngIf="hasError('umidade', 'required')"
+            >Campo obrigatório</mat-error
+          >
+          <mat-error *ngIf="hasError('umidade', 'min')"
+            >O valor deve ser maior ou igual a 0</mat-error
+          >
+          <mat-error *ngIf="hasError('umidade', 'max')"
+            >O valor deve ser menor ou igual a 100</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Produtividade</mat-label>
+          <input matInput type="number" formControlName="densidade" />
+          <mat-error *ngIf="hasError('densidade', 'required')"
+            >Campo obrigatório</mat-error
+          >
+          <mat-error *ngIf="hasError('densidade', 'min')"
+            >O valor deve ser maior ou igual a 100</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Custo por saca</mat-label>
+          <input matInput type="number" formControlName="tamanhoMedioGrao" />
+          <mat-error *ngIf="hasError('tamanhoMedioGrao', 'required')"
+            >Campo obrigatório</mat-error
+          >
+          <mat-error *ngIf="hasError('tamanhoMedioGrao', 'min')"
+            >O valor deve ser positivo</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Preco de venda</mat-label>
+          <input matInput type="number" formControlName="impurezas" />
+          <mat-error *ngIf="hasError('impurezas', 'required')"
+            >Campo obrigatório</mat-error
+          >
+          <mat-error *ngIf="hasError('impurezas', 'min')"
+            >O valor deve ser maior ou igual a 0</mat-error
+          >
+          <mat-error *ngIf="hasError('impurezas', 'max')"
+            >O valor deve ser menor ou igual a 100</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Gastos com fertilizantes</mat-label>
+          <input matInput formControlName="origemLote" />
+          <mat-error *ngIf="hasError('origemLote', 'required')"
+            >Campo obrigatório</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Gastos com mão de obra</mat-label>
+          <input matInput formControlName="origemLote" />
+          <mat-error *ngIf="hasError('origemLote', 'required')"
+            >Campo obrigatório</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Despesas com irrigação</mat-label>
+          <input matInput formControlName="origemLote" />
+          <mat-error *ngIf="hasError('origemLote', 'required')"
+            >Campo obrigatório</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Custos com transporte</mat-label>
+          <input matInput formControlName="origemLote" />
+          <mat-error *ngIf="hasError('origemLote', 'required')"
+            >Campo obrigatório</mat-error
+          >
+        </mat-form-field>
+
+        <div class="buttons-container">
+          <button
+            [disabled]="!coffeeForm.valid"
+            mat-raised-button
+            color="primary"
+            type="submit"
+          >
+            Enviar
+          </button>
+          <button
+            mat-raised-button
+            color="warn"
+            type="submit"
+            (click)="closeModal()"
+          >
+            Cancelar
+          </button>
+        </div>
+      </mat-card>
+    </form>
+  </div>
+</section>

@@ -2,23 +2,17 @@
   <section class="login-modal">
     <h1 class="login-title">Realize o login com google</h1>
 
-    <div
-      id="g_id_onload"
-      data-client_id="504978211418-3dhhubtlvn988eu0mc24l0a0skpt68i6.apps.googleusercontent.com"
-      data-context="signin"
-      data-ux_mode="popup"
-      data-login_uri="http://localhost:3000/auth/google"
-      data-auto_prompt="false"
-    ></div>
-
-    <div
-      class="g_id_signin"
-      data-type="standard"
-      data-shape="pill"
-      data-theme="outline"
-      data-text="signin_with"
-      data-size="large"
-      data-logo_alignment="left"
-    ></div>
+    <button
+      class="flex items-center gap-2 px-4 py-2 border rounded-lg shadow"
+      (click)="googleLogin()"
+    >
+      <img
+        src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+        alt="Google Logo"
+        width="20"
+        height="20"
+      />
+      <span>Login com Google</span>
+    </button>
   </section>
 </div>
