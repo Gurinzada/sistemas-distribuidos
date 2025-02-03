@@ -53,23 +53,14 @@ export class ProductionAnalysisComponent implements OnInit {
 
   ngOnInit(): void {
     this.coffeeForm = this.fb.group({
-      umidade: [
-        null,
-        [Validators.required, Validators.min(0), Validators.max(100)],
-      ],
-      densidade: [null, [Validators.required, Validators.min(100)]],
-      tamanhoMedioGrao: [null, [Validators.required, Validators.min(0)]],
-      impurezas: [
-        null,
-        [Validators.required, Validators.min(0), Validators.max(100)],
-      ],
-      defeitos: [null, []],
-      origemLote: [null, Validators.required],
-      metodoProcessamento: [null, Validators.required],
-      pontuacaoSCA: [
-        null,
-        [Validators.required, Validators.min(0), Validators.max(100)],
-      ],
+      production_costs: [null, [Validators.required, Validators.min(0)]],
+      productivity: [null, [Validators.required, Validators.min(0)]],
+      cost_per_bag: [null, [Validators.required, Validators.min(0)]],
+      sale_price: [null, [Validators.required, Validators.min(0)]],
+      fertilizer_expenses: [null, [Validators.required, Validators.min(0)]],
+      labor_expenses: [null, [Validators.required, Validators.min(0)]],
+      irrigation_expenses: [null, [Validators.required, Validators.min(0)]],
+      transport_costs: [null, Validators.required],
     });
 
     LoadingService.setLoading(false);

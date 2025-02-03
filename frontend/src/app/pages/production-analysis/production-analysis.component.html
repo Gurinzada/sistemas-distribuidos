@@ -20,90 +20,89 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Custo de produção</mat-label>
-          <input
-            mask="separator.2"
-            thousandSeparator="."
-            decimalMarker=","
-            matInput
-            type="number"
-            formControlName="umidade"
-          />
-          <mat-error *ngIf="hasError('umidade', 'required')"
+          <input matInput type="number" formControlName="production_costs" />
+          <mat-error *ngIf="hasError('production_costs', 'required')"
             >Campo obrigatório</mat-error
           >
-          <mat-error *ngIf="hasError('umidade', 'min')"
+          <mat-error *ngIf="hasError('production_costs', 'min')"
             >O valor deve ser maior ou igual a 0</mat-error
-          >
-          <mat-error *ngIf="hasError('umidade', 'max')"
-            >O valor deve ser menor ou igual a 100</mat-error
           >
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Produtividade</mat-label>
-          <input matInput type="number" formControlName="densidade" />
-          <mat-error *ngIf="hasError('densidade', 'required')"
+          <input matInput type="number" formControlName="productivity" />
+          <mat-error *ngIf="hasError('productivity', 'required')"
             >Campo obrigatório</mat-error
           >
-          <mat-error *ngIf="hasError('densidade', 'min')"
+          <mat-error *ngIf="hasError('productivity', 'min')"
             >O valor deve ser maior ou igual a 100</mat-error
           >
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Custo por saca</mat-label>
-          <input matInput type="number" formControlName="tamanhoMedioGrao" />
-          <mat-error *ngIf="hasError('tamanhoMedioGrao', 'required')"
+          <input matInput type="number" formControlName="cost_per_bag" />
+          <mat-error *ngIf="hasError('cost_per_bag', 'required')"
             >Campo obrigatório</mat-error
           >
-          <mat-error *ngIf="hasError('tamanhoMedioGrao', 'min')"
+          <mat-error *ngIf="hasError('cost_per_bag', 'min')"
             >O valor deve ser positivo</mat-error
           >
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Preco de venda</mat-label>
-          <input matInput type="number" formControlName="impurezas" />
-          <mat-error *ngIf="hasError('impurezas', 'required')"
+          <input matInput type="number" formControlName="sale_price" />
+          <mat-error *ngIf="hasError('sale_price', 'required')"
             >Campo obrigatório</mat-error
           >
-          <mat-error *ngIf="hasError('impurezas', 'min')"
+          <mat-error *ngIf="hasError('sale_price', 'min')"
             >O valor deve ser maior ou igual a 0</mat-error
-          >
-          <mat-error *ngIf="hasError('impurezas', 'max')"
-            >O valor deve ser menor ou igual a 100</mat-error
           >
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Gastos com fertilizantes</mat-label>
-          <input matInput formControlName="origemLote" />
-          <mat-error *ngIf="hasError('origemLote', 'required')"
+          <input matInput type="number" formControlName="fertilizer_expenses" />
+          <mat-error *ngIf="hasError('fertilizer_expenses', 'required')"
             >Campo obrigatório</mat-error
+          >
+          <mat-error *ngIf="hasError('fertilizer_expenses', 'min')"
+            >Valor precisa ser positivo</mat-error
           >
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Gastos com mão de obra</mat-label>
-          <input matInput formControlName="origemLote" />
-          <mat-error *ngIf="hasError('origemLote', 'required')"
+          <input matInput type="number" formControlName="labor_expenses" />
+          <mat-error *ngIf="hasError('labor_expenses', 'required')"
             >Campo obrigatório</mat-error
+          >
+          <mat-error *ngIf="hasError('labor_expenses', 'min')"
+            >Valor precisa ser positivo</mat-error
           >
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Despesas com irrigação</mat-label>
-          <input matInput formControlName="origemLote" />
-          <mat-error *ngIf="hasError('origemLote', 'required')"
+          <input matInput type="number" formControlName="irrigation_expenses" />
+          <mat-error *ngIf="hasError('irrigation_expenses', 'required')"
             >Campo obrigatório</mat-error
+          >
+          <mat-error *ngIf="hasError('irrigation_expenses', 'min')"
+            >Valor precisa ser positivo</mat-error
           >
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Custos com transporte</mat-label>
-          <input matInput formControlName="origemLote" />
-          <mat-error *ngIf="hasError('origemLote', 'required')"
+          <input matInput type="number" formControlName="transport_costs" />
+          <mat-error *ngIf="hasError('transport_costs', 'required')"
             >Campo obrigatório</mat-error
+          >
+          <mat-error *ngIf="hasError('transport_costs', 'min')"
+            >Valor precisa ser positivo</mat-error
           >
         </mat-form-field>
 
