@@ -2,10 +2,12 @@ import { Module } from '@nestjs/common';
 import * as dotenv from 'dotenv';
 // import { AuthModule } from './auth/auth.module';
 // import { UserModule } from './user/user.module';
-// import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
 // import { User } from './user/entities/user.entity';
 import { CostControlModule } from './cost-control/cost-control.module';
 import { QualityControlModule } from './quality-control/quality-control.module';
+import { config } from './orm-config';
+
 dotenv.config();
 
 @Module({
@@ -21,9 +23,9 @@ dotenv.config();
     //   synchronize:true
     // }),
     // UserModule, AuthModule],
+  imports: [TypeOrmModule.forRoot(config), CostControlModule, QualityControlModule],
   controllers: [],
   providers: [],
-  imports: [CostControlModule, QualityControlModule],
 })
 
 export class AppModule {}
