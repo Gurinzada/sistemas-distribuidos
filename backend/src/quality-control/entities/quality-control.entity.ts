@@ -6,26 +6,26 @@ export class QualityControl {
   id: number;
 
   @Column({ nullable: false })
-  humidity: number;
+  umidade: number;
 
   @Column({ nullable: false })
-  density: number;
+  densidade: number;
 
   @Column({ nullable: false })
-  average_grain_size: number;
+  tamanho_medio_grao: number;
 
   @Column({ nullable: false })  
-  impurities: number;
+  impurezas: number;
 
   @Column({ nullable: false })
-  defects: number;
+  defeitos: number;
 
   @Column({ nullable: false })
-  batch_origin: string;
+  origem_lote: string;
 
   @Column({ nullable: false })
-  processing_method: string;
+  metodo_processamento: string;
 
   @Column({ nullable: false })
-  sca_score: number;
+  pontuacao_sca: number;
 }

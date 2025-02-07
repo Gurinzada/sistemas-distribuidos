@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class CostControl {
@@ -6,27 +6,26 @@ export class CostControl {
   id: number;
 
   @Column({ nullable: false })
-  cost: number;
+  custo_producao: number;
 
   @Column({ nullable: false })
-  productivity: number;
+  produtividade: number;
 
   @Column({ nullable: false })
-  cost_per_bag: number;
+  custo_por_saca: number;
 
   @Column({ nullable: false })
-  sale_price: number;
+  preco_venda: number;
 
   @Column({ nullable: false })
-  fertilizer_expenses: number;
+  gastos_fertilizantes: number;
 
   @Column({ nullable: false })
-  labor_cost: number;
+  mao_de_obra: number;
 
   @Column({ nullable: false })
-  irrigation_expenses: number;
+  despesas_irrigacao: number;
 
   @Column({ nullable: false })
-  transportation_cost: number;
+  custo_transporte: number;
 }
-
