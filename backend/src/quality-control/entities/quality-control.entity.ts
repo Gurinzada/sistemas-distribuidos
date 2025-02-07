@@ -17,8 +17,8 @@ export class QualityControl {
   @Column({ nullable: false })  
   impurezas: number;
 
-  @Column({ nullable: false })
-  defeitos: number;
+  @Column("text", { array: true, nullable: false })
+  defeitos: string[];
 
   @Column({ nullable: false })
   origem_lote: string;
