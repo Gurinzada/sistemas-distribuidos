@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CostControlModule } from './cost-control/cost-control.module';
 import { QualityControlModule } from './quality-control/quality-control.module';
 import { config } from './orm-config';
+import { ConfigModule } from '@nestjs/config';
 
 dotenv.config();
 
@@ -23,7 +24,12 @@ dotenv.config();
     //   synchronize:true
     // }),
     // UserModule, AuthModule],
-  imports: [TypeOrmModule.forRoot(config), CostControlModule, QualityControlModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true}),
+    TypeOrmModule.forRoot(config), 
+    CostControlModule, 
+    QualityControlModule,
+  ],
   controllers: [],
   providers: [],
 })
