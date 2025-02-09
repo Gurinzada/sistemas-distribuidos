@@ -11,6 +11,16 @@
     >
       Requisitar nova analise
     </button>
+
+    <div *ngIf="loading" class="loading">
+      <h1>IA analisando resultados</h1>
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div *ngIf="!loading" class="analysis_label">
+      <h1>Analise realizada pela IA</h1>
+      <p *ngIf="aIanalisys$ | async as analysis">{{ analysis }}</p>
+    </div>
   </div>
 
   <div class="form-modal" *ngIf="modalOpenned">

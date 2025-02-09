@@ -7,6 +7,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterModule } from '@angular/router';
 import { SessionKeysEnum } from '../../../shared/session-keys.enum';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-navbar',
@@ -24,6 +25,10 @@ import { SessionKeysEnum } from '../../../shared/session-keys.enum';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
+  get loading(): boolean {
+    return LoadingService.getAnalysisLoadingStatus();
+  }
+
   constructor(private router: Router) {}
 
   public navigateToQualityAnalysis(): void {

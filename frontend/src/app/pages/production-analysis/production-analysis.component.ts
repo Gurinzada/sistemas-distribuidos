@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -11,10 +11,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { provideNgxMask } from 'ngx-mask';
+import { BehaviorSubject } from 'rxjs';
+import { ProdutionAnalysisRequest } from '../../models/procution-analysis-request.model';
 import { LoadingService } from '../../services/loading.service';
+import { ProductionAnalysisService } from '../../services/production-analysis.service';
 
 @Component({
   selector: 'app-user-page',
@@ -28,7 +31,7 @@ import { LoadingService } from '../../services/loading.service';
     MatFormFieldModule,
     MatSelectModule,
     MatCheckboxModule,
-    NgxMaskDirective,
+    MatProgressSpinnerModule,
   ],
   providers: [provideNgxMask()],
   templateUrl: './production-analysis.component.html',
@@ -44,11 +47,13 @@ export class ProductionAnalysisComponent implements OnInit {
     'mofo',
   ];
   public modalOpenned: boolean = false;
+  public aIanalisys$ = new BehaviorSubject<string>('');
+  public loading: boolean = false;
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private productionAnalysisService: ProductionAnalysisService,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -67,10 +72,35 @@ export class ProductionAnalysisComponent implements OnInit {
   }
 
   public submitForm() {
+    this.loading = true;
+    this.closeModal();
+
     if (this.coffeeForm.valid) {
-      console.log('Dados do Café:', this.coffeeForm.value);
-    } else {
-      console.log('Formulário inválido!');
+      const formValues = this.coffeeForm.value;
+
+      const request: ProdutionAnalysisRequest = {
+        custo_producao: formValues['production_costs'],
+        produtividade: formValues['productivity'],
+        custo_por_saca: formValues['cost_per_bag'],
+        preco_venda: formValues['sale_price'],
+        gastos_fertilizantes: formValues['fertilizer_expenses'],
+        mao_de_obra: formValues['labor_expenses'],
+        despesas_irrigacao: formValues['irrigation_expenses'],
+        custo_transporte: formValues['transport_costs'],
+      };
+
+      this.productionAnalysisService
+        .getProductionAnalysisFromIA(request)
+        .subscribe(
+          (res) => {
+            this.aIanalisys$.next(res.response);
+            this.loading = false;
+          },
+          (error) => {
+            console.error('Erro ao obter análise:', error);
+            this.loading = false;
+          }
+        );
     }
   }
 

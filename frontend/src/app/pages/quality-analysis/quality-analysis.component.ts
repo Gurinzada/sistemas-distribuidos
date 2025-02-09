@@ -11,8 +11,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
-import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { QualityAnalysisRequest } from '../../models/quality-analysis-request.model';
+import { QualityAnalysisService } from '../../services/quality-analysis.service';
 
 @Component({
   selector: 'app-quality-analysis',
@@ -26,6 +29,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     MatFormFieldModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './quality-analysis.component.html',
   styleUrl: './quality-analysis.component.scss',
@@ -40,10 +44,11 @@ export class QualityAnalysisComponent implements OnInit {
     'mofo',
   ];
   public modalOpenned: boolean = false;
+  public aIanalisys$ = new BehaviorSubject<string>('');
+  public loading: boolean = false;
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
+    private qualityAnalisysService: QualityAnalysisService,
     private fb: FormBuilder
   ) {}
 
@@ -70,8 +75,28 @@ export class QualityAnalysisComponent implements OnInit {
   }
 
   public submitForm() {
+    this.loading = true;
+    this.closeModal();
     if (this.coffeeForm.valid) {
-      console.log('Dados do Café:', this.coffeeForm.value);
+      const formValues = this.coffeeForm.value;
+
+      const request: QualityAnalysisRequest = {
+        defeitos: formValues['defeitos'],
+        densidade: formValues['densidade'],
+        impurezas: formValues['impurezas'],
+        metodo_processamento: formValues['metodoProcessamento'],
+        origem_lote: formValues['origemLote'],
+        pontuacao_sca: formValues['pontuacaoSCA'],
+        tamanho_medio_grao: formValues['tamanhoMedioGrao'],
+        umidade: formValues['umidade'],
+      };
+
+      this.qualityAnalisysService
+        .getQualityAnalysisFromIA(request)
+        .subscribe((res) => {
+          this.aIanalisys$.next(res.response);
+          this.loading = false;
+        });
     } else {
       console.log('Formulário inválido!');
     }
