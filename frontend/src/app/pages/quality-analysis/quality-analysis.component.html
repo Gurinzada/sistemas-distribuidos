@@ -87,6 +87,14 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
+          <mat-label>Descricao dos defeitos</mat-label>
+          <input matInput formControlName="defeitos" />
+          <mat-error *ngIf="hasError('defeitos', 'required')"
+            >Campo obrigatório</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
           <mat-label>Método de Processamento</mat-label>
           <mat-select formControlName="metodoProcessamento">
             <mat-option value="Natural">Natural</mat-option>
